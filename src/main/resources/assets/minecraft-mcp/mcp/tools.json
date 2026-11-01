@@ -465,5 +465,52 @@
 			"readOnlyHint": true,
 			"openWorldHint": false
 		}
+	},
+	{
+		"name": "connect",
+		"title": "Connect",
+		"description": "Join a multiplayer server directly, without going through the title screen's Multiplayer menu. Leaves whatever world or server came before first, the way clicking a different server in the list would. The server's resource pack, if it pushes one, is accepted automatically, without the usual confirmation prompt. Without host, rejoins the server last joined with this tool, or the one currently connected to if neither this session nor the current connection has one, which is the quickest way to relog after a disconnect or server restart. Returns once the player is in the world, or the game's own reason if it couldn't connect.",
+		"inputSchema": {
+			"type": "object",
+			"properties": {
+				"host": {
+					"type": "string",
+					"description": "The server's address, e.g. \"localhost\" or \"localhost:25566\". Defaults to 25565 without a port. Omit to reconnect to the last address."
+				}
+			},
+			"additionalProperties": false
+		},
+		"annotations": {
+			"destructiveHint": true,
+			"openWorldHint": false
+		}
+	},
+	{
+		"name": "disconnect",
+		"title": "Disconnect",
+		"description": "Leave the current world or server, back to the title screen, the way the pause menu's Disconnect button does. Saves first if the game is hosting the world.",
+		"inputSchema": {
+			"type": "object",
+			"properties": {},
+			"additionalProperties": false
+		},
+		"annotations": {
+			"destructiveHint": true,
+			"openWorldHint": false
+		}
+	},
+	{
+		"name": "reload_resource_packs",
+		"title": "Reload resource packs",
+		"description": "Reload resource packs and data, the way the F3+T shortcut does, to pick up edits to files in an active resource pack folder without rejoining. Does nothing to which packs are enabled or their order.",
+		"inputSchema": {
+			"type": "object",
+			"properties": {},
+			"additionalProperties": false
+		},
+		"annotations": {
+			"destructiveHint": true,
+			"openWorldHint": false
+		}
 	}
 ]

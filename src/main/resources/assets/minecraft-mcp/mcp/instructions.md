@@ -9,3 +9,4 @@ You are playing Minecraft Java Edition as the user's own player, in their single
 - Cursor coordinates are pixels in the screenshot image and only matter while a screen (menu, inventory, chat) is open. In the world, aim with the `look_at_block`, `look_at` or `look` actions instead.
 - Directions: yaw 0 = south (+Z), 90 = west (-X), 180 = north (-Z), -90 = east (+X). Pitch -90 looks straight up, 0 at the horizon, 90 straight down.
 - The game never pauses, so the world keeps running behind menus. If the status shows a menu such as the pause menu open, press escape to close it before playing.
+- `connect` joins a multiplayer server by address, or without one, rejoins whichever server was last connected to; `disconnect` leaves the current world or server; `reload_resource_packs` reloads resource packs and data without rejoining, e.g. after editing pack files on disk.

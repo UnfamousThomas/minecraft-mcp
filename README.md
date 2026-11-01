@@ -35,10 +35,13 @@ A Fabric client mod that runs an [MCP](https://modelcontextprotocol.io) server i
 | `input` | A sequence of key presses/holds, clicks, cursor moves, scrolling, typing, `look`/`look_at`/`look_at_block` and waits, run one step per game tick. |
 | `update_blocks` | Makes the blocks in a box react to their surroundings, which blocks placed by `/setblock` and `/fill` don't do on their own. Needs cheats, or operator rights on a server, where it works through `/fill`. |
 | `watch_blocks` | Records every change to the blocks in a box over a number of ticks, in order and tick by tick, e.g. to see what a circuit does. Exact on the server with cheats in a singleplayer world; otherwise from what the client receives. |
+| `connect` | Joins a multiplayer server by address, leaving whatever came before first, and accepts its resource pack without the usual prompt. Without an address, rejoins the last server connected to. |
+| `disconnect` | Leaves the current world or server, back to the title screen, like the pause menu's Disconnect button. |
+| `reload_resource_packs` | Reloads resource packs and data, like F3+T, to pick up edits on disk without rejoining. |
 
 ## Behaviour to know about
 
-- Input goes straight to the game's input handlers, so it works while the game window is in the background. The window must not be minimized for screenshots.
+- Input goes straight to the game's input handlers, so it works while the game window is in the background. Screenshots work while minimized too, read from the game's own render target rather than the window; cursor-based `input` actions (click, move, scroll) still need the window restored, since they need real window coordinates.
 - The game never pauses: not when its window loses focus, and not while a menu is open. The mod is meant for a separate instance the agent plays in, not your own play. Opening the pause menu still saves the world.
 - Keys the agent left held are released once it hasn't used a tool for 5 minutes.
 - Commands the agent runs are shown in chat as `[MCP] /command`, followed by their output, unless the `sendCommandFeedback` game rule is off.

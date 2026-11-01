@@ -39,10 +39,11 @@ public final class StatusReport {
 	private static String build(boolean detailed) {
 		Minecraft minecraft = Minecraft.getInstance();
 		StringBuilder out = new StringBuilder();
+		ScreenCapture.Size image = ScreenCapture.imageSize(minecraft.getWindow());
 		if (minecraft.getWindow().isIconified()) {
-			out.append("screenshot/cursor coordinates: none, the game window is minimized\n");
+			out.append("screenshot: ").append(image.width()).append('x').append(image.height())
+				.append(" (the size before minimizing); cursor coordinates: none, the game window is minimized\n");
 		} else {
-			ScreenCapture.Size image = ScreenCapture.imageSize(minecraft.getWindow());
 			out.append("screenshot/cursor coordinates: ").append(image.width()).append('x').append(image.height()).append('\n');
 		}
 

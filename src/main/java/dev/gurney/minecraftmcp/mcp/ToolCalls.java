@@ -13,6 +13,7 @@ import dev.gurney.minecraftmcp.game.CommandRunner;
 import dev.gurney.minecraftmcp.game.GameThreads;
 import dev.gurney.minecraftmcp.game.MobBrain;
 import dev.gurney.minecraftmcp.game.ScreenCapture;
+import dev.gurney.minecraftmcp.game.ServerConnection;
 import dev.gurney.minecraftmcp.game.StatusReport;
 import dev.gurney.minecraftmcp.game.SurfaceMap;
 import dev.gurney.minecraftmcp.game.ToolException;
@@ -65,6 +66,9 @@ final class ToolCalls {
 				case "use_block" -> useBlock(arguments);
 				case "update_blocks" -> result(false, text(BlockUpdates.update(blockPos(arguments, "from"), blockPos(arguments, "to"))));
 				case "watch_blocks" -> result(false, text(startWatch(arguments).await()));
+				case "connect" -> result(false, text(ServerConnection.join(arguments.has("host") ? requiredString(arguments, "host") : null)));
+				case "disconnect" -> result(false, text(ServerConnection.disconnect()));
+				case "reload_resource_packs" -> result(false, text(ServerConnection.reloadResourcePacks()));
 				default -> throw new UnknownToolException(name);
 			};
 		} catch (ToolException e) {

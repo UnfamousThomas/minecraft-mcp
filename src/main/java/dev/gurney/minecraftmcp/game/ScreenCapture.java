@@ -55,9 +55,6 @@ public final class ScreenCapture {
 		};
 		GameThreads.onClient(() -> {
 			Minecraft minecraft = Minecraft.getInstance();
-			if (minecraft.getWindow().isIconified()) {
-				throw new ToolException("the game window is minimized, so nothing is being rendered; ask the user to restore it");
-			}
 			if (hud || minecraft.gui.screen() != null) {
 				Screenshot.takeScreenshot(minecraft.gameRenderer.mainRenderTarget(), receiver);
 			} else {
