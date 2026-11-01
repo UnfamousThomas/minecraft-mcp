@@ -12,6 +12,7 @@ import dev.gurney.minecraftmcp.game.ClientCatchUp;
 import dev.gurney.minecraftmcp.game.CommandRunner;
 import dev.gurney.minecraftmcp.game.GameThreads;
 import dev.gurney.minecraftmcp.game.MobBrain;
+import dev.gurney.minecraftmcp.game.PacketRecorder;
 import dev.gurney.minecraftmcp.game.ScreenCapture;
 import dev.gurney.minecraftmcp.game.ServerConnection;
 import dev.gurney.minecraftmcp.game.StatusReport;
@@ -69,6 +70,10 @@ final class ToolCalls {
 				case "connect" -> result(false, text(ServerConnection.join(arguments.has("host") ? requiredString(arguments, "host") : null)));
 				case "disconnect" -> result(false, text(ServerConnection.disconnect()));
 				case "reload_resource_packs" -> result(false, text(ServerConnection.reloadResourcePacks()));
+				case "start_packet_recording" -> result(false, text(PacketRecorder.start(
+					arguments.has("filter") ? requiredString(arguments, "filter") : null,
+					arguments.has("seconds") ? number(arguments, "seconds") : null)));
+				case "stop_packet_recording" -> result(false, text(PacketRecorder.stop()));
 				default -> throw new UnknownToolException(name);
 			};
 		} catch (ToolException e) {

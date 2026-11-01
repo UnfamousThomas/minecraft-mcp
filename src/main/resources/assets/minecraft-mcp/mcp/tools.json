@@ -512,5 +512,44 @@
 			"destructiveHint": true,
 			"openWorldHint": false
 		}
+	},
+	{
+		"name": "start_packet_recording",
+		"title": "Start packet recording",
+		"description": "Start recording packets sent and received on the current connection, e.g. to see exactly what a click on a menu or dialog sends and what the server sends back. Fails if a recording is already running or hasn't been retrieved with stop_packet_recording yet. Only one recording runs at a time.",
+		"inputSchema": {
+			"type": "object",
+			"properties": {
+				"filter": {
+					"type": "string",
+					"description": "Only record packets whose class name contains this text (case-insensitive), e.g. \"dialog\" or \"ClientboundContainer\". Without it, every packet is recorded, which on a busy server can be mostly noise (keep-alives, entity movement); a filter is usually worth setting."
+				},
+				"seconds": {
+					"type": "number",
+					"exclusiveMinimum": 0,
+					"maximum": 600,
+					"description": "Stop recording automatically after this many seconds. Without it, recording continues until stop_packet_recording is called."
+				}
+			},
+			"additionalProperties": false
+		},
+		"annotations": {
+			"readOnlyHint": true,
+			"openWorldHint": false
+		}
+	},
+	{
+		"name": "stop_packet_recording",
+		"title": "Stop packet recording",
+		"description": "Stop the current packet recording (or retrieve one that already stopped on its own via seconds) and return what it captured: each packet's time since recording started, direction (S->C from the server, C->S to it) and a summary from the packet's own fields. Capped at 2000 packets; past that, recording keeps running but stops keeping more, noted in the result.",
+		"inputSchema": {
+			"type": "object",
+			"properties": {},
+			"additionalProperties": false
+		},
+		"annotations": {
+			"readOnlyHint": true,
+			"openWorldHint": false
+		}
 	}
 ]

@@ -38,6 +38,7 @@ A Fabric client mod that runs an [MCP](https://modelcontextprotocol.io) server i
 | `connect` | Joins a multiplayer server by address, leaving whatever came before first, and accepts its resource pack without the usual prompt. Without an address, rejoins the last server connected to. |
 | `disconnect` | Leaves the current world or server, back to the title screen, like the pause menu's Disconnect button. |
 | `reload_resource_packs` | Reloads resource packs and data, like F3+T, to pick up edits on disk without rejoining. |
+| `start_packet_recording` / `stop_packet_recording` | Records packets sent and received on the current connection, optionally filtered by class name and/or capped to a time budget, e.g. to see what a dialog or menu click actually sends. |
 
 ## Behaviour to know about
 
