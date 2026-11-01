@@ -541,7 +541,7 @@
 	{
 		"name": "stop_packet_recording",
 		"title": "Stop packet recording",
-		"description": "Stop the current packet recording (or retrieve one that already stopped on its own via seconds) and return what it captured: each packet's time since recording started, direction (S->C from the server, C->S to it) and a summary from the packet's own fields. Capped at 2000 packets; past that, recording keeps running but stops keeping more, noted in the result.",
+		"description": "Stop the current packet recording (or retrieve one that already stopped on its own via seconds) and return what it captured: each packet's time since recording started, direction (S->C from the server, C->S to it) and the packet's own toString, which is its real field data, not a lossy summary, since packet classes are records whose toString nests every field's own toString (e.g. a dialog packet's full buttons, text and actions, not just that a dialog was shown). Capped at 2000 packets and 20000 characters per packet, past which a packet is dropped or cut off; both are noted when hit, and only matter on an unfiltered, long-running or unusually large capture.",
 		"inputSchema": {
 			"type": "object",
 			"properties": {},
