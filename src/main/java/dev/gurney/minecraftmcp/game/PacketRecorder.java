@@ -19,13 +19,8 @@ import net.minecraft.network.protocol.Packet;
  */
 public final class PacketRecorder {
 	private static final int MAX_ENTRIES = 2000;
-	/**
-	 * High enough that record-based packets (most of them, including dialogs) never get cut off -
-	 * a record's toString nests its fields' own toString, so this is genuinely the packet's raw
-	 * data, not a lossy summary. Still bounded, so an unfiltered capture that catches something
-	 * like raw chunk data doesn't blow up the result.
-	 */
-	private static final int MAX_SUMMARY_LENGTH = 20_000;
+	/** Effectively unbounded; only here as a backstop against a single pathological packet's toString. */
+	private static final int MAX_SUMMARY_LENGTH = 200_000_000;
 	private static final double MAX_SECONDS = 600;
 
 	private static final ScheduledExecutorService SCHEDULER = Executors.newSingleThreadScheduledExecutor(runnable -> {
